@@ -100,3 +100,77 @@ func getSimpleMathOperationModified(firstNum: Int, secondNum: Int, mathType: Cal
 }
 
 getSimpleMathOperationModified(firstNum: 10, secondNum: 10, mathType: .multiplication)
+
+/*
+ Задание 2
+
+2.1 Создайте перечисление CurrencyUnit со следующими членами: rouble, dollar, euro. Данные члены
+ перечисления имеют тип связанных значений следующего вида: ([String], String),
+ где массив должен содержать перечень тех стран, в которых используется валюта,
+ а тип стринг - сокращенное наименование валюты.
+ */
+
+enum CurrencyUnit {
+
+    enum DollarCountries: String {
+        case australia = "Австралия"
+        case canada = "Канада"
+        case usa = "США"
+    }
+
+    case rouble(countries: [String], currencyName: String)
+    case dollar(countries: [String], dollarNationalCountry: DollarCountries, currencyName: String)
+    case euro(countries: [String], currencyName: String)
+}
+
+/*
+ 2.2 Создайте переменную roubleCurrency и присвойте ей соответствующие значения
+ */
+
+let roubleCurrency = CurrencyUnit.rouble(countries: ["Россия", "Узбекистан"], currencyName: "RUB")
+
+/*
+ 2.3 Внутри перечисления CurrencyUnit создайте еще одно перечисление DollarCountrys, в котором
+ содержиться перчень стран, национальной валютой которых является доллар (USA, Canada, Australia)
+
+ 2.4 Расширьте тип связанных значений (ассоциированный параметр) для члена dollar, который будет
+ сообщать о том, валютой какой страны является данный доллар
+
+2.5 Создайте переменную someCurrency и присвойете ей значения относящиеся к доллару
+ */
+
+let someCurrency = CurrencyUnit.dollar(countries: ["Мексика", "Эстония"], dollarNationalCountry:
+.usa, currencyName: "USD")
+
+/*
+ 2.6 Используя ветвление switch выведите на коносль сообщение в котором описано что за валюта,
+   в каких странах катируется, короткое наименование.
+ */
+
+switch roubleCurrency {
+case let .rouble(countries, currencyName):
+    print("Валюта Российской рубль. Котируется в странах: \(countries.joined(separator: ", ")).Краткое наименование: \(currencyName)")
+
+case let .dollar(countries, dollarNationalCountry, currencyName):
+    print("""
+          Валюта Доллар США. Котируется в странах: \(countries),
+           является национальной валютой в \(dollarNationalCountry) краткое наименование: \(currencyName)
+          """)
+
+case let .euro(countries, currencyName):
+    print("Валюта Евро. Котируется в странах: \(countries), краткое наименование: \(currencyName)")
+}
+
+switch someCurrency {
+case let .rouble(countries, currencyName):
+    print("Валюта Российской рубль. Котируется в странах: \(countries.joined(separator: ", ")), краткое наименование: \(currencyName)")
+
+case let .dollar(countries, dollarNationalCountry, currencyName):
+    print("""
+          Валюта Доллар США. Котируется в странах: \(countries.joined(separator: ", ")),
+           является национальной валютой в \(dollarNationalCountry) краткое наименование: \(currencyName)
+          """)
+
+case let .euro(countries, currencyName):
+    print("Валюта Евро. Котируется в странах: \(countries), краткое наименование: \(currencyName)")
+}
