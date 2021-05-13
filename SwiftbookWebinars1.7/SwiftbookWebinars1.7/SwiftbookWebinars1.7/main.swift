@@ -174,3 +174,95 @@ case let .dollar(countries, dollarNationalCountry, currencyName):
 case let .euro(countries, currencyName):
     print("Валюта Евро. Котируется в странах: \(countries), краткое наименование: \(currencyName)")
 }
+
+/*
+ Задание 3
+
+3.1 Создайте структуру Car со следующими элементами:
+
+name: String
+porductionYear: Int
+horsePower: Int
+ */
+
+struct Car {
+    var name: String
+    let productionYear: Int
+    var horsePower: Int
+}
+
+/*
+ 3.2 Создайте экземпляр структуры Car с названием какого либо автомобильного бренда,
+ например honda.
+ */
+
+let honda = Car(name: "Honda", productionYear: 2000, horsePower:100)
+
+/*
+ 3.3 Создайте копию экземпляра honda, например, hondaCivic
+ */
+
+var hondaCivic = honda
+hondaCivic.name = "HondaCivic"
+
+/*
+ 3.5 Создайте цикл с пятью итерациями, в котором в каждой итерации необходимо увеличивать значение
+   horsePower у структуры hondaCivic на единицу
+ */
+
+for _ in 1...5 {
+    hondaCivic.horsePower += 1
+}
+
+/*
+ 3.6 Выведите значения структур honda и hondaCivic на консоль в следующем виде:
+ "Мощность двигателя <..> составляет <...> л.с."
+ */
+
+print("Мощность двигателя \(honda.name) составляет \(honda.horsePower)  л.с.")
+print("Мощность двигателя \(hondaCivic.name) составляет \(hondaCivic.horsePower)) л.с.")
+
+
+/*
+ Задание 4
+
+4.1 Создайте структуру PlayerInChess, в которой есть два свойства: name с типом Sting и wins с типом Int
+
+ */
+
+struct PlayerInChess {
+    let name: String
+    var totalWins: Int
+
+    func description() {
+        print("Игрок: \(name), всего побед: \(totalWins)")
+    }
+
+    mutating func addWins(increment: Int) {
+        totalWins += increment
+    }
+}
+
+/*
+4.2 Создайте экзмепляр струкутуры и инициализируйте её свойства
+ */
+
+var playerOne = PlayerInChess(name: "Silvester", totalWins: 10)
+
+/*
+4.3 Расширьте структуру PlayerInChess методом description, который должен выводить на консоль имя
+ игрока и количество его побед
+4.4 Вызвите данный метод из экземпляра структуры
+ */
+
+playerOne.description()
+
+/*
+ 4.5 Расширте структуру методом addWins, который должен принимать целочисленное значение и
+ увеличивать количество побед на это значение.
+
+4.6 Вызовите метод addWins из экземпляра структуры, затем вызовите метод description
+ */
+
+playerOne.addWins(increment: 10)
+playerOne.description()
