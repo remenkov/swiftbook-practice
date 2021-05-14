@@ -38,9 +38,9 @@ print(sumOfPiAndLevelFortyTwo)
 
  Выведите на консоль фразу: «Результат деления <...> на <...> равен <...> <...>/<...>».
  Поясню: в математике результатом деления 5 на 3 будет натуральная дробь 1 2/3
-   (одна целая две третьих, здесь мы используем стандартную математическую запись, а не оператор деления).
-     Вам необходимо вывести на консоль именно такой результат от деления numberOne на numberTwo в виде
-       натуральной дроби — например «Результат деления 7 на 3 равен 2 1/3».
+   (одна целая две третьих, здесь мы используем стандартную математическую запись, а не оператор
+    деления). Вам необходимо вывести на консоль именно такой результат от деления numberOne на
+    numberTwo в виде натуральной дроби — например «Результат деления 7 на 3 равен 2 1/3».
  */
 
 func sum(numberOne: Int, numberTwo: Int) -> Int {
@@ -84,20 +84,21 @@ print("Остаток от деления двух чисел: \(remainder)")
 
 
 print("Для деления и получения остатка с натуральной дробью введите первое целое число: ")
-guard let input = readLine(), let divisible = Int(input) else {
+guard let input = readLine(), let divisibleTwo = Int(input) else {
     print("Разрешается вводить только целые числа")
     fatalError()
 }
 
 print("Введите второе целое число: ")
-guard let input = readLine(), let divisor = Int(input) else {
+guard let input = readLine(), let divisorTwo = Int(input) else {
     print("Разрешается вводить только целые числа")
     fatalError()
 }
-let integerPart = Int(divisible / divisor)
-
-print("Результат деления \(divisible) на \(divisor) равен \(integerPart) \(remainder)/\(divisor) \n\n\n")
-
+let integerPart = Int(divisibleTwo / divisorTwo)
+let newRemainder = getRemainder(divisible: divisibleTwo, divisor: divisorTwo)
+print("Результат деления \(divisibleTwo) на \(divisorTwo) равен: ")
+print("\(integerPart) \(newRemainder)/\(divisorTwo)")
+print("\n\n\n")
 
 /*
  Задание 3
@@ -177,7 +178,8 @@ print("You born in \(quarter) quarter")
 /*
  Задание 4
 
-Задание на вашу способность гуглить. Необходимо вычислить синус от числа 1 и округлить результат до тысячных.
+Задание на вашу способность гуглить. Необходимо вычислить синус от числа 1 и округлить результат
+ до тысячных.
  Подсказка: в результате должно получиться 0.841
  */
 
