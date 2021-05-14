@@ -18,7 +18,8 @@ let secondString = "code"
 print("\(firstString) \(secondString)!")
 
 /*
- Необходимо создать константу с именем myAge и присвоить ей значение вашего возраста (можно не настоящее).
+ Необходимо создать константу с именем myAge и присвоить ей значение вашего возраста
+ (можно не настоящее).
 
  Объявите переменную типа Int с именем myAgeInTenYears и присвойте ей значение вашего возраста
   через 10 лет (используйте константу myAge и оператор сложения).
@@ -44,9 +45,10 @@ guard let input = readLine(), let myAge = Int(input) else {
 let myAgeInTenYears = myAge + 10
 let daysInYear = 365.25
 let daysPassed = Float(myAgeInTenYears) * Float(daysInYear)
-print("Мой возраст \(myAge) лет.")
-print("Через 10 лет, мне будет \(myAgeInTenYears) лет, с момента моего рождения пройдет \(daysPassed) дней. ")
+let myAgeInTenYearsOutput = "Через 10 лет, мне будет \(myAgeInTenYears) лет"
+let myAgeDaysPassedOutput = "с момента моего рождения пройдет \(daysPassed) дней."
 
+print("Мой возраст \(myAge) лет. \(myAgeInTenYearsOutput), \(myAgeDaysPassedOutput)")
 
 /*
  Необходимо вычислить площадь и периметр прямоугольного треугольника.
@@ -71,7 +73,7 @@ func squareOfRightTriangle(a: Double, b: Double) -> Double {
 }
 
 func perimeterOfTriangle(a: Double, b: Double, c: Double) -> Double {
-    a * b * c
+    a + b + c
 }
 
 func hypotenuseOfTriangle(a: Double, b: Double) -> Double {
