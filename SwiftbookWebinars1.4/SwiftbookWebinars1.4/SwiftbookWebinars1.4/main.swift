@@ -19,6 +19,7 @@ import Foundation
  Выведите результат на консоль в таком виде: "Сумма вклада через <... > лет увеличится на <...> и
    составит <...>"
  */
+
 var deposit = 500.0
 let rate = 0.11
 var profit = 0.0
@@ -101,10 +102,7 @@ let nightDistance = -1
 var finish = 0
 
 for _ in (1...distancePerMeters) {
-    let buffer: Int
-    buffer = dayDistance + nightDistance
-    finish += buffer
-    print("Черепаха заберется на столб через: \(distancePerMeters - finish) метров")
+    finish += dayDistance + nightDistance
 }
 
 print("Черепаха заберется на столб за: \(finish) дней")
