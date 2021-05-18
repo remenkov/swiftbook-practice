@@ -166,37 +166,43 @@ names и surnames, соответственно. Свойство salary (за
 зарплата которых чётная. Выведите информацию по каждому сотруднику с четной зарплатой, как в пункте 3.4
  */
 
-class Employee {
-    var salary: Int
-    var names: String
-    var surnames: String
+final class Employee: CustomStringConvertible {
+    var description: String {
+        get {
+            "Имя: \(name), Фамилия: \(surname), Зарплата: $\(salary)"
+        }
+    }
 
-    init(salary: Int, names: String, surnames: String) {
+    let salary: Int
+    let name: String
+    let surname: String
+
+    init(salary: Int, name: String, surname: String) {
         self.salary = salary
-        self.names = names
-        self.surnames = surnames
+        self.name = name
+        self.surname = surname
     }
 }
 
-let namesArray: [String] = ["John", "Aaron", "Tim", "Ted", "Steven"]
-let surnamesArray: [String] = ["Smith", "Dow", "Isaacson", "Pennyworth", "Jankins"]
-var employees: [Employee] = []
+let namesArray = ["John", "Aaron", "Tim", "Ted", "Steven"]
+let surnamesArray = ["Smith", "Dow", "Isaacson", "Pennyworth", "Jankins"]
+var employees = [Employee]()
 
 for _ in 1...10 {
-    let salary = Int.random(in: 1000...2000)
     let employee = Employee(
-        salary: salary,
-        names: namesArray.randomElement()!,
-        surnames: surnamesArray.randomElement()!
+        salary: Int.random(in: 1000...2000),
+        name: namesArray.randomElement()!,
+        surname: surnamesArray.randomElement()!
     )
     employees.append(employee)
 }
 
 for employee in employees {
-    print("Имя: \(employee.names), Фамилия: \(employee.surnames), Зарплата: $\(employee.salary)")
+    print(employee)
 }
+print("------------------------------------")
 
-var employeesWithEvenSalary:[Employee] = []
+var employeesWithEvenSalary = [Employee]()
 
 for employee in employees {
     if employee.salary % 2 == 0 {
@@ -205,5 +211,5 @@ for employee in employees {
 }
 
 for employee in employeesWithEvenSalary {
-    print(employee.names, employee.surnames, employee.salary)
+    print(employee)
 }
