@@ -69,9 +69,10 @@ struct SWDiff {
 func getDiffBetweenDates(dateFrom: SWDate, dateTo: SWDate) -> SWDiff {
     let monthsPerYear = 12
     let daysPerMonth = 30
-    let totalDaysFromDateTo = (dateTo.year * monthsPerYear * daysPerMonth) + (dateTo.month * daysPerMonth) +
-        dateTo.day
-    let totalDaysFromDateFrom = (dateFrom.year * monthsPerYear * daysPerMonth) + (dateFrom.month * daysPerMonth) + dateFrom.day
+    let totalDaysFromDateTo = (dateTo.year * monthsPerYear * daysPerMonth) +
+        (dateTo.month * daysPerMonth) + dateTo.day
+    let totalDaysFromDateFrom = (dateFrom.year * monthsPerYear * daysPerMonth) +
+        (dateFrom.month * daysPerMonth) + dateFrom.day
     let daysDiff = totalDaysFromDateTo - totalDaysFromDateFrom
     let monthsDiff: Int = daysDiff / daysPerMonth
     let yearsDiff: Int = monthsDiff / monthsPerYear
@@ -97,21 +98,19 @@ print(
 /*
  Задание 3
 
- Создайте функцию, которая считает общую сумму денег, хранящихся в кошельке. В кошельке имеются
- купюры различного достоинства от 50 до 5000 рублей
- Заполните массив различными купюрами и подсчитайте общую сумму
+ Создайте функцию, которая считает общую сумму денег, хранящихся в кошельке.
+ В кошельке имеются купюры различного достоинства от 50 до 5000 рублей.
+ Заполните массив различными купюрами и подсчитайте общую сумму.
  */
 
 func getSumOfBanknotes(numOf50s: Int, numOf100s: Int, numOf500s: Int) -> Int {
-    var buffer = 0
-    buffer = (numOf50s * 50) + (numOf100s * 100) + (numOf500s * 500)
-    return buffer
+    (numOf50s * 50) + (numOf100s * 100) + (numOf500s * 500)
 }
 
 let money = getSumOfBanknotes(numOf50s: 5, numOf100s: 1, numOf500s: 3)
 print(money)
 
-let walletOfBanknotes = [50, 50, 100, 500, 1000]
+let wallet = [50, 50, 100, 500, 1000]
 
 func getSumFromArray(array: [Int]) -> Int {
     var buffer = 0
@@ -121,8 +120,9 @@ func getSumFromArray(array: [Int]) -> Int {
     return buffer
 }
 
-let moneyInWallet = getSumFromArray(array: walletOfBanknotes)
+let moneyInWallet = getSumFromArray(array: wallet)
 print(moneyInWallet)
+print(wallet.reduce(0, +))
 
 /*
  Задание 4
@@ -170,13 +170,11 @@ func getAscendingArray(fromNum: Int, toNum: Int, step: Int) -> [Int] {
     return arrayOfNumbers
 }
 
-let someArray = getAscendingArray(fromNum: 1, toNum: 100, step: 1)
+let someArray = getAscendingArray(fromNum: 1, toNum: 100, step: 7)
 print(someArray)
 
-//for element in stride(from: 3, to: 100, by: 3) {
-//    print(element)
-//}
+let strideArray = stride(from: 1, to: 100, by: 7)
+print(strideArray)
 
 print(someArray.filter(isEvenNumber))
 print(someArray.filter(isNotDivisionByThree))
-
