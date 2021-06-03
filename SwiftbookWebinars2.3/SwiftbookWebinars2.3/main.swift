@@ -64,3 +64,39 @@ for value in randomValues {
 }
 
 printDelimiter()
+
+
+/*
+ Создайте словарь [String : Any], где все значения — это смесь вещественных и целых чисел,
+ строк и булевых значений.
+ Выведите пары ключ/значения для всех элементов коллекции.
+ */
+
+let someSchedules: [String: Any] = [
+    "Хабаровск": "Москва", // 1
+    "Ташкент": 5, // 6
+    "Казань": true, // 2
+    "Ура": "30",
+    "Bro": 5.5, // 5.5
+    "Ufa": 100, // 100
+    "Miami": 38.5, // 38.5
+    "Buenos": 35.5 // 35.5
+]
+
+for schedule in someSchedules {
+    print("\(schedule.key): \(schedule.value)")
+}
+
+printDelimiter()
+
+for key in someSchedules.keys.sorted() {
+    print(key, someSchedules[key])
+}
+
+printDelimiter()
+
+// Вариант 2
+for (key, value) in someSchedules {
+    print(key, value)
+}
+printDelimiter()
