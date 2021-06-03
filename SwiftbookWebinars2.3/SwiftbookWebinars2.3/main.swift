@@ -32,3 +32,35 @@ let randomValues: [Any] = [
 
 print(randomValues)
 printDelimiter()
+
+/*
+ Пройдите по всем элементам коллекции.
+ Для каждого целого, напечайте "Целое число " и его значение.
+ Повторите то же самое для вещественных чисел, строк и булевых значений.
+ */
+
+for value in randomValues {
+    if value is Int {
+        print("Целое число: \(value)")
+    } else if value is String {
+        print("Тип String: \(value)")
+    } else if value is Bool {
+        print("Булев тип: \(value)")
+    } else if value is Double {
+        print("Тип Double: \(value)")
+    }
+}
+printDelimiter()
+
+// Вариант 2
+for value in randomValues {
+    switch value {
+        case is Int: print("\(value) is Int")
+        case is String: print("\(value) is String")
+        case is Double: print("\(value) is Double")
+        case is Bool: print("\(value) is Bool")
+        default:print("You know value type...")
+    }
+}
+
+printDelimiter()
