@@ -175,3 +175,71 @@ for value in someSchedules.values {
 printDelimiter()
 print("Total: \(total)")
 printDelimiter()
+
+/*
+ Напишите функции describeRun(runningWorkout:) и describeSwim(swimmingWorkout:), принимающие
+ объекты типаRun и Swim соответственно. Ни одна не должна возвращать значений. Каждая функция
+ должна вывести описание тренировки, включая темп бега, либо стиль плавания.  Время представлено
+ в секундах, расстояние — в метрах, темп — в шагах в минуту.
+ */
+
+class Workout {             // тренировка
+    let time: Double        // время
+    let distance: Double    // дистанция
+
+    init(time: Double, distance: Double) {
+        self.time = time
+        self.distance = distance
+    }
+}
+
+class Run: Workout {    // бег
+    let cadence: Double // темп
+
+    init(cadence: Double, time: Double, distance: Double) {
+        self.cadence = cadence
+        super.init(time: time, distance: distance)
+    }
+}
+
+class Swim: Workout {   // плавание
+    let stroke: String  // стиль
+
+    init(stroke: String, time: Double, distance: Double) {
+        self.stroke = stroke
+        super.init(time: time, distance: distance)
+    }
+}
+
+let workouts: [Workout] = [
+    Run(cadence: 80, time: 1200, distance: 4000),
+    Swim(stroke: "вольный стиль", time: 32.1, distance: 50),
+    Swim(stroke: "баттерфляй", time: 36.8, distance: 50),
+    Swim(stroke: "вольный стиль", time: 523.6, distance: 500),
+    Run(cadence: 90, time: 358.9, distance: 1600)
+]
+
+func describeRun(runningWorkout: Run) {
+    print("RUNNING WORKOUT")
+    describe(workout: runningWorkout)
+    print("cadence: \(runningWorkout.cadence) per steps.")
+}
+
+func describeSwim(swimmingWorkout: Swim) {
+    print("SWIMMING WORKOUT")
+    describe(workout: swimmingWorkout)
+    print("stroke: \(swimmingWorkout.stroke).")
+}
+
+func describe(workout: Workout) {
+    print("time: \(workout.time) in sec.")
+    print("distance: \(workout.distance) in meters.")
+}
+
+for workout in workouts {
+    if let runWorkout = workout as? Run {
+        describeRun(runningWorkout: runWorkout)
+    } else if let swimWorkout = workout as? Swim {
+        describeSwim(swimmingWorkout: swimWorkout)
+    }
+}
