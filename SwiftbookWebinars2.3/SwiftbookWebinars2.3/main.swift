@@ -6,7 +6,13 @@
 //
 //
 
-import Foundation
+private func printDelimiter() {
+    print("------*--------*----------*----------*--------*----------*----------")
+}
+
+private func print(total: Double) {
+    print("Total: \(total)")
+}
 
 /*
  Упражнение - приведение типов и их контроль
@@ -14,10 +20,6 @@ import Foundation
  значений.
  Распечатайте содержимое коллекции.
  */
-
-private func printDelimiter() {
-    print("------*--------*----------*----------*--------*----------*----------")
-}
 
 let randomValues: [Any] = [
     "Tennis",
@@ -27,7 +29,8 @@ let randomValues: [Any] = [
     true,
     1111,
     "Musician",
-    "Dirty Coder"
+    "Dirty Coder",
+    Float(55.5)
 ]
 
 print(randomValues)
@@ -48,8 +51,11 @@ for value in randomValues {
         print("Булев тип: \(value)")
     } else if value is Double {
         print("Тип Double: \(value)")
+    } else {
+        print("Неизвестный тип: \(value)")
     }
 }
+
 printDelimiter()
 
 // Вариант 2
@@ -59,12 +65,11 @@ for value in randomValues {
         case is String: print("\(value) is String")
         case is Double: print("\(value) is Double")
         case is Bool: print("\(value) is Bool")
-        default:print("You know value type...")
+        default: print("\(value) has unknown type")
     }
 }
 
 printDelimiter()
-
 
 /*
  Создайте словарь [String : Any], где все значения — это смесь вещественных и целых чисел,
@@ -72,35 +77,36 @@ printDelimiter()
  Выведите пары ключ/значения для всех элементов коллекции.
  */
 
-let someSchedules: [String: Any] = [
-    "Хабаровск": "Москва", // 1
-    "Ташкент": 5, // 6
-    "Казань": true, // 2
+let dictionary: [String: Any] = [
+    "Хабаровск": "Москва",
+    "Ташкент": 5,
+    "Казань": true,
     "Ура": "30",
-    "Bro": 5.5, // 5.5
-    "Ufa": 100, // 100
-    "Miami": 38.5, // 38.5
-    "Buenos": 35.5 // 35.5
+    "Bro": 5.5,
+    "Ufa": 100,
+    "Miami": 38.5,
+    "Buenos": 35.5
 ]
 
-for schedule in someSchedules {
-    print("\(schedule.key): \(schedule.value)")
+for pair in dictionary {
+    print("\(pair.key): \(pair.value)")
 }
 
 printDelimiter()
 
-for key in someSchedules.keys.sorted() {
-    print(key, someSchedules[key])
+for key in dictionary.keys.sorted() {
+    if let value = dictionary[key] {
+        print(key, value)
+    }
 }
 
 printDelimiter()
 
 // Вариант 2
-for (key, value) in someSchedules {
+for (key, value) in dictionary {
     print(key, value)
 }
 printDelimiter()
-
 
 /*
  Создайте переменную total типа Double, равную 0.
@@ -113,7 +119,7 @@ printDelimiter()
 
 var total = 0.0
 
-for value in someSchedules.values {
+for value in dictionary.values {
     switch value {
         case let intValue as Int:
             total += Double(intValue)
@@ -128,28 +134,24 @@ for value in someSchedules.values {
     }
 }
 
-print(total)
+print(total: total)
 printDelimiter()
 
 total = 0.0
 
-for value in someSchedules.values {
+for value in dictionary.values {
     if let value = value as? Int {
         total += Double(value)
-
     } else if let value = value as? Double {
         total += value
-
     } else if value is String {
         total += 1
-
     } else if let value = value as? Bool {
         total += value ? 2 : -3
     }
 }
 
-printDelimiter()
-print("Total: \(total)")
+print(total: total)
 printDelimiter()
 
 /*
@@ -160,20 +162,17 @@ printDelimiter()
 
 total = 0.0
 
-for value in someSchedules.values {
+for value in dictionary.values {
     if let value = value as? Int {
         total += Double(value)
-
     } else if let value = value as? Double {
         total += value
-
     } else if let value = value as? String, let value = Double(value)  {
         total += value
     }
 }
 
-printDelimiter()
-print("Total: \(total)")
+print(total: total)
 printDelimiter()
 
 /*
@@ -183,9 +182,9 @@ printDelimiter()
  в секундах, расстояние — в метрах, темп — в шагах в минуту.
  */
 
-class Workout {             // тренировка
-    let time: Double        // время
-    let distance: Double    // дистанция
+class Workout {
+    let time: Double
+    let distance: Double
 
     init(time: Double, distance: Double) {
         self.time = time
@@ -193,8 +192,8 @@ class Workout {             // тренировка
     }
 }
 
-class Run: Workout {    // бег
-    let cadence: Double // темп
+final class Run: Workout {
+    let cadence: Double
 
     init(cadence: Double, time: Double, distance: Double) {
         self.cadence = cadence
@@ -202,8 +201,8 @@ class Run: Workout {    // бег
     }
 }
 
-class Swim: Workout {   // плавание
-    let stroke: String  // стиль
+final class Swim: Workout {
+    let stroke: String
 
     init(stroke: String, time: Double, distance: Double) {
         self.stroke = stroke
